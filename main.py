@@ -1,34 +1,43 @@
-import os
+from flask import Flask, render_template, request
 
-from flask import Flask, render_template, redirect, url_for
+app = Flask(__name__, template_folder='src/templates', static_folder='src/static')
 
-app = Flask(__name__, static_folder='src/static', template_folder='src/templates')
-
-# Página inicial
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Rota genérica para a calculadora
-@app.route('/<int:a>/<int:b>')
-def oper(a: int, b: int):
-
-    result = 0
+@app.route('/calcular', methods=['POST'])
+def calcular():
     try:
-            if b == 0:
-                return render_template('error.html', error_message="Não é possível dividir por zero.",
-                                       status_code=400), 400
-            result = a / ((b/100) ** 2)
+        peso = float(request.form['peso'])
+        altura_cm = float(request.form['altura'])
+        altura = altura_cm / 100
+
+        imc = peso / (altura ** 2)
+        peso_ideal = 22 * (altura ** 2)
+
+        # Classificação
+        if imc < 18.5:
+            classificacao = "Magreza"
+        elif imc < 24.9:
+            classificacao = "Normal"
+        elif imc < 29.9:
+            classificacao = "Sobrepeso"
+        else:
+            classificacao = "Obesidade"
+
+        return render_template(
+            'resultado.html',
+            peso=round(peso, 2),
+            altura=round(altura_cm, 2),
+            imc=round(imc, 2),
+            classificacao=classificacao,
+            peso_ideal=round(peso_ideal, 2)
+        )
+
     except Exception as e:
-        return redirect(url_for('index'))
-
-    return render_template('math.html',name = f"resultado de {a} / {b}",result=f"{result:.2f}")
-
-
-
+        return f"Erro ao calcular IMC: {e}"
 
 if __name__ == '__main__':
-    # Define a porta a partir da variável de ambiente PORT, ou usa 5000 como padrão
-    # A porta 80 geralmente requer privilégios de administrador, então 5000 é mais comum para desenvolvimento.
-    port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=True)
+

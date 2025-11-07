@@ -2,19 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title>Portal Saúde & Fitness</title>
+    <title>Resultado do IMC</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
     <header>
-        <h1>Portal Saúde & Fitness</h1>
-        <nav>
-            <a href="{{ url_for('index') }}">Início</a>
-            <a href="#">Login</a>
-            <a href="#">Perfil</a>
-            <a href="#">Sobre</a>
-        </nav>
+        <h1>Resultado do IMC</h1>
     </header>
 
     <main>
@@ -22,18 +16,18 @@
             <div class="imc-card">
                 <h3>ÍNDICE DE MASSA CORPORAL (IMC)</h3>
                 <p class="sub">
-                    Peso: <span id="peso-val">--</span> kg,
-                    Altura: <span id="altura-val">--</span> cm
+                    Peso: <span id="peso-val">{{ peso }}</span> kg,
+                    Altura: <span id="altura-val">{{ altura }}</span> cm
                 </p>
 
                 <div class="imc-value-wrap">
-                    <div class="imc-value" id="valor-imc">--</div>
-                    <div id="classificacao" class="status">--</div>
+                    <div class="imc-value" id="valor-imc">{{ imc }}</div>
+                    <div id="classificacao" class="status">{{ classificacao }}</div>
                 </div>
 
                 <div class="peso-ideal-title">PESO IDEAL</div>
                 <div class="peso-ideal-value">
-                    <strong id="peso-ideal">--</strong> kg
+                    <strong id="peso-ideal">{{ peso_ideal }}</strong> kg
                 </div>
 
                 <div class="faixa-wrap">
@@ -61,43 +55,37 @@
             </div>
         </div>
 
-        <section class="calculator">
-            <h2>Calculadora de IMC</h2>
-            <!-- action envia pro Flask -->
-            <form id="calc-form" action="{{ url_for('calcular') }}" method="post">
-                <!-- name é importante para request.form no Flask -->
-                <input 
-                    type="number" 
-                    id="peso" 
-                    name="peso"
-                    placeholder="Peso (kg)" 
-                    required 
-                    step="any"
-                >
-                <input 
-                    type="number" 
-                    id="altura" 
-                    name="altura"
-                    placeholder="Altura (cm)" 
-                    required 
-                    step="any"
-                >
-                <button type="submit">Calcular</button>
-            </form>
-        </section>
+        <a href="{{ url_for('index') }}" class="btn-voltar">Voltar</a>
     </main>
 
     <footer>
         &copy; 2025 Portal Saúde & Fitness
     </footer>
 
-    <!-- NÃO inclua index.js aqui (ele previne o submit). 
-         Se quiser usar JS apenas para efeitos na mesma página, comente ou remova a tag abaixo. -->
-    <!-- <script src="{{ url_for('static', filename='js/index.js') }}"></script> -->
+    <!-- Script que posiciona o marcador e aplica a cor conforme o IMC calculado no servidor -->
+    <script>
+        (function() {
+            const imcStr = "{{ imc }}";
+            const imc = parseFloat(imcStr);
+            const classificacaoEl = document.getElementById('classificacao');
+            const marcador = document.getElementById('marcador');
+
+            // Ajusta classe de cor (mesma lógica do servidor)
+            if (imc < 18.5) classificacaoEl.className = 'status magreza';
+            else if (imc < 24.9) classificacaoEl.className = 'status normal';
+            else if (imc < 29.9) classificacaoEl.className = 'status sobrepeso';
+            else classificacaoEl.className = 'status obesidade';
+
+            // Calcula posição do marcador (mesma fórmula usada no front-end)
+            let pos = 0;
+            if (imc < 18.5) pos = (imc / 18.5) * 25;
+            else if (imc < 25) pos = 25 + ((imc - 18.5) / 6.4) * 25;
+            else if (imc < 30) pos = 50 + ((imc - 25) / 5) * 25;
+            else pos = 75 + ((imc - 30) / 10) * 25;
+
+            marcador.style.left = `${Math.min(95, Math.max(0, pos))}%`;
+        })();
+    </script>
 </body>
 </html>
-
-
-
-
 

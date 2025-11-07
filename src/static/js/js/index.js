@@ -8,12 +8,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const peso = parseFloat(document.getElementById("peso").value);
         const alturaCm = parseFloat(document.getElementById("altura").value);
 
-        if (isNaN(peso) || isNaN(alturaCm)) return;
+        if (isNaN(peso) || isNaN(alturaCm) || peso <= 0 || alturaCm <= 0) {
+            alert("Por favor, insira valores válidos de peso e altura.");
+            return;
+        }
 
         const altura = alturaCm / 100;
         const imc = peso / (altura * altura);
         const imcFixado = imc.toFixed(2);
 
+        // Atualiza valores
         document.getElementById("valor-imc").textContent = imcFixado;
         document.getElementById("peso-val").textContent = peso;
         document.getElementById("altura-val").textContent = alturaCm;
@@ -43,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const pesoIdeal = 22 * (altura * altura);
         document.getElementById("peso-ideal").textContent = pesoIdeal.toFixed(2);
 
-        // Mover o marcador
+        // Atualiza posição do marcador
         const marcador = document.getElementById("marcador");
         let pos = 0;
 
@@ -56,7 +60,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
-
-    
