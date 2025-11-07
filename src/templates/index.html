@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Portal Saúde & Fitness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+    <header>
+        <h1>Portal Saúde & Fitness</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="#">Login</a>
+            <a href="#">Perfil</a>
+            <a href="#">Sobre</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card-wrap">
+            <!-- Card de IMC -->
+            <div class="imc-card">
+                <h3>ÍNDICE DE MASSA CORPORAL (IMC)</h3>
+                <p class="sub">
+                    Peso: <span id="peso-val">88</span> kg, 
+                    Altura: <span id="altura-val">183</span> cm
+                </p>
+
+                <div class="imc-value-wrap">
+                    <div class="imc-value" id="valor-imc">0.00</div>
+                    <div id="classificacao" class="status normal">Normal</div>
+                </div>
+
+                <div class="peso-ideal-title">PESO IDEAL</div>
+                <div class="peso-ideal-value">
+                    <strong id="peso-ideal">73.68</strong> kg
+                </div>
+
+                <!-- faixa colorida -->
+                <div class="faixa-wrap">
+                    <div class="faixa" aria-hidden="true">
+                        <div class="faixa-seg magreza"></div>
+                        <div class="faixa-seg normal"></div>
+                        <div class="faixa-seg sobrepeso"></div>
+                        <div class="faixa-seg obesidade"></div>
+                        <div id="marcador" class="marcador">
+                            <div class="marcador-inner"></div>
+                        </div>
+                    </div>
+
+                    <div class="faixa-labels">
+                        <span id="tick1">62.0kg</span>
+                        <span id="tick2">83.7kg</span>
+                        <span id="tick3">100.5kg</span>
+                    </div>
+                    <div class="legenda">
+                        <small>Magreza</small>
+                        <small>Normal</small>
+                        <small>Sobrepeso</small>
+                        <small>Obesidade</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário -->
+        <section class="calculator">
+            <h2>Calculadora de IMC</h2>
+            <form id="calc-form">
+                <input 
+                    type="number" 
+                    id="peso" 
+                    placeholder="Peso (Ex: 88 kg)" 
+                    required 
+                    step="any" 
+                    value="88"
+                >
+                <input 
+                    type="number" 
+                    id="altura" 
+                    placeholder="Altura (Ex: 183 cm)" 
+                    required 
+                    step="any" 
+                    value="183"
+                >
+                <button type="submit">Calcular</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Portal Saúde & Fitness
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
+
+
+
