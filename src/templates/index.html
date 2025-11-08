@@ -63,9 +63,9 @@
 
         <section class="calculator">
             <h2>Calculadora de IMC</h2>
-            <!-- action envia pro Flask -->
+         
             <form id="calc-form" action="{{ url_for('calcular') }}" method="post">
-                <!-- name é importante para request.form no Flask -->
+              
                 <input 
                     type="number" 
                     id="peso" 
@@ -91,9 +91,7 @@
         &copy; 2025 Portal Saúde & Fitness
     </footer>
 
-    <!-- NÃO inclua index.js aqui (ele previne o submit). 
-         Se quiser usar JS apenas para efeitos na mesma página, comente ou remova a tag abaixo. -->
-    <!-- <script src="{{ url_for('static', filename='js/index.js') }}"></script> -->
+    
 </body>
 </html>
 
