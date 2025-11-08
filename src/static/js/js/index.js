@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const imc = peso / (altura * altura);
         const imcFixado = imc.toFixed(2);
 
-        // Atualiza valores
+       
         document.getElementById("valor-imc").textContent = imcFixado;
         document.getElementById("peso-val").textContent = peso;
         document.getElementById("altura-val").textContent = alturaCm;
@@ -43,11 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
         classificacao.className = "status " + classe;
         classificacao.textContent = texto;
 
-        // Peso ideal
+        
         const pesoIdeal = 22 * (altura * altura);
         document.getElementById("peso-ideal").textContent = pesoIdeal.toFixed(2);
 
-        // Atualiza posição do marcador
+    
         const marcador = document.getElementById("marcador");
         let pos = 0;
 

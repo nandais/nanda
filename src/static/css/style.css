@@ -37,7 +37,7 @@ footer {
     font-size: 14px;
 }
 
-/* ====== CARD PRINCIPAL ====== */
+
 .card-wrap {
     display: flex;
     justify-content: center;
@@ -83,7 +83,7 @@ footer {
     margin-top: 5px;
 }
 
-/* ====== CORES DE CLASSIFICAÇÃO ====== */
+
 .status.magreza {
     color: #007bff;
 }
@@ -97,7 +97,7 @@ footer {
     color: #dc3545;
 }
 
-/* ====== PESO IDEAL ====== */
+
 .peso-ideal-title {
     margin-top: 15px;
     font-size: 14px;
@@ -111,7 +111,7 @@ footer {
     margin-bottom: 15px;
 }
 
-/* ====== FAIXA ====== */
+
 .faixa-wrap {
     position: relative;
     margin-top: 15px;
@@ -143,7 +143,7 @@ footer {
     background-color: #dc3545;
 }
 
-/* ====== MARCADOR ====== */
+
 .marcador {
     position: absolute;
     top: -6px;
@@ -171,7 +171,7 @@ footer {
     margin-top: 3px;
 }
 
-/* ====== CALCULADORA ====== */
+
 .calculator {
     background-color: white;
     max-width: 400px;
@@ -215,7 +215,7 @@ footer {
     background-color: #334566;
 }
 
-/* ====== RESPONSIVO ====== */
+
 @media (max-width: 480px) {
     .imc-card {
         width: 90%;

@@ -62,7 +62,7 @@
         &copy; 2025 Portal Saúde & Fitness
     </footer>
 
-    <!-- Script que posiciona o marcador e aplica a cor conforme o IMC calculado no servidor -->
+    
     <script>
         (function() {
             const imcStr = "{{ imc }}";
@@ -76,7 +76,7 @@
             else if (imc < 29.9) classificacaoEl.className = 'status sobrepeso';
             else classificacaoEl.className = 'status obesidade';
 
-            // Calcula posição do marcador (mesma fórmula usada no front-end)
+            
             let pos = 0;
             if (imc < 18.5) pos = (imc / 18.5) * 25;
             else if (imc < 25) pos = 25 + ((imc - 18.5) / 6.4) * 25;
