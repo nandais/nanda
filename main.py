@@ -16,7 +16,7 @@ def calcular():
         imc = peso / (altura ** 2)
         peso_ideal = 22 * (altura ** 2)
 
-        # Classificação
+       
         if imc < 18.5:
             classificacao = "Magreza"
         elif imc < 24.9:
